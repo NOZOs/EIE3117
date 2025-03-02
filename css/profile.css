@@ -1,0 +1,37 @@
+* {
+    margin: 0;
+    padding: 0
+}
+
+
+.card {
+    width: 350px;
+    background-color: #efefef;
+    border: none;
+    cursor: pointer;
+    transition: all 0.5s
+}
+
+.image img {
+    transition: all 0.5s
+}
+
+.profile-btn {
+    height: 140px;
+    width: 140px;
+    border-radius: 50%
+}
+
+.displayname {
+    font-size: 22px;
+    font-weight: bold
+}
+
+.username {
+    font-size: 14px;
+    font-weight: 600
+}
+
+.email {
+    font-size: 12px
+}
