@@ -3,7 +3,7 @@
 $appConfig=array(
     "appTitle" => "PHPBookmark", 
     "mysql" => array(
-        "host" => "eie3117db", 
+        "host" => "localhost", 
         "username" => "bookmark_web",
         "password" => "36XrVk7tMLUkv4dq",  
         "database" => "bookmark_system"
