@@ -2,12 +2,13 @@
     <h1> PHPFoodMenu</h1>
     <p class="lead">Main</p>
     <p>Logged in as <strong><?=SessionController::getInstance()->getUser()->username;?></strong></p>
+    <h2>List of FoodMenu</h2>
     <table class="table table-hover table-striped table-bordered align-middle text-center">
         <thead>
             <tr>
                 <th class="col-md-3">Resturant</th>
-                <th class="col-md-8">FoodMenu - Title</th>
-                <th class="col-md-3">View</th>
+                <th class="col-md-8">Food Title</th>
+                <th class="col-md-2">Detail</th>
             </tr>
         </thead>
         <tbody>
@@ -15,7 +16,8 @@
             <tr>
                 <td><?= htmlspecialchars($fm->username) ?></td>
                 <td><?= htmlspecialchars($fm->foodTitle) ?></td>
-                <td>- VIEW</td>
+                <td><a  class="btn btn-primary">VIEW</a></td>
+                
             </tr>
         <?php endforeach ?>
         </tbody>
@@ -23,3 +25,4 @@
     
     <a href="/add_fm" class="btn btn-warning">+ Add FoodMenu</a>
   </div>
+  

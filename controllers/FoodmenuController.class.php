@@ -6,7 +6,7 @@ require_once(dirname(__FILE__) . '/../class/SessionController.class.php');
 require_once(dirname(__FILE__) . '/../class/Validation.class.php');
 require_once(dirname(__FILE__) . '/../model/User.class.php');
 require_once(dirname(__FILE__) . '/../model/Foodmenu.class.php');
-class FoodemenuController {
+class FoodmenuController {
 
     public static function showAddFoodmenu() {
         // This shows the add bookmark page
@@ -23,6 +23,7 @@ class FoodemenuController {
         // This shows the submitted add bookmark page
         $sessionController = SessionController::getInstance();
         $sessionController->makeSureLoggedIn('/login'); // Why a logged out user want to access this page?
+
         $addFoodmenuPageView = new View('add_fm', 'Add Foodmenu');
         $formErrors = new FormErrors();
 
@@ -53,9 +54,9 @@ class FoodemenuController {
         if(!$formErrors->haveError()) {
             $newFM = new Foodmenu();
             $newFM->username = SessionController::getInstance()->getUser()->username;
-            $newFM->title = $_POST["fm_fT"];
-            $newFM->description = $_POST["fm_dD"];
-            $newFM->price = $_POST["fm_fP"];
+            $newFM->foodTitle = $_POST["fm_fT"];
+            $newFM->dishDescription = $_POST["fm_dD"];
+            $newFM->price= $_POST["fm_fP"];
             
             if(Foodmenu::createNewFoodmenu($newFM)) {
                 $addFoodmenuPageView = new View('add_fm_succeed', 'Add Foodmenu: Succeed');

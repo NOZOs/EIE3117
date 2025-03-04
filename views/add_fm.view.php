@@ -8,7 +8,7 @@
                 <label class="input-group-text" for="fm_">New FM: </label>
                 <input class="form-control" placeholder="enter your food title" name="fm_fT" type="text" required autofocus>
                 <input class="form-control" placeholder="enter your dish description" name="fm_dD" type="text" required autofocus>
-                <input class="form-control" placeholder="enter your price" name="fm_P" type="number" required autofocus>
+                <input class="form-control" placeholder="enter your price" name="fm_fP" type="number" required autofocus>
                 <?php if($form_errors->has('fm_fT')): ?>
                     <span class="invalid-feedback">
                                 <strong><?php echo $form_errors->getErrorMsg('fm_fT'); ?></strong>
