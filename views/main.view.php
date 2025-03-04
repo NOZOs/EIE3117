@@ -5,13 +5,15 @@
     <table class="table table-hover table-striped table-bordered align-middle text-center">
         <thead>
             <tr>
-                <th class="col-md-10">FoodMenu - Title</th>
-                <th class="col-md-2">View</th>
+                <th class="col-md-3">Resturant</th>
+                <th class="col-md-8">FoodMenu - Title</th>
+                <th class="col-md-3">View</th>
             </tr>
         </thead>
         <tbody>
         <?php foreach($foodmenu as $fm): ?>
             <tr>
+                <td><?= htmlspecialchars($fm->username) ?></td>
                 <td><?= htmlspecialchars($fm->foodTitle) ?></td>
                 <td>- VIEW</td>
             </tr>

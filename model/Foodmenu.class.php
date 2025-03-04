@@ -10,7 +10,7 @@ class Foodmenu {
 
     public static function getUserFoodmenu(User $user) {
         $result=[];
-        $query = Database::query("SELECT * FROM `foodMenu` WHERE `username`='" . $user->username . "'");
+        $query = Database::query("SELECT * FROM `foodMenu` ");
         if($query !== false) {
             $queryResult = $query->fetchAll();
             foreach($queryResult as $r) {
