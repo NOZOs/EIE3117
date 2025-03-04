@@ -5,19 +5,19 @@
     <table class="table table-hover table-striped table-bordered align-middle text-center">
         <thead>
             <tr>
-                <th class="col-md-10">FoodMenu</th>
+                <th class="col-md-10">FoodMenu - Title</th>
                 <th class="col-md-2">View</th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach($bookmarks as $bm): ?>
-                <tr>
-                    <td><a href="<?=htmlspecialchars($bm->url)?>"><?=htmlspecialchars($bm->url)?></a></td>
-                    <td><a href="/delete_bm/<?=$bm->id?>" class="btn btn-danger">- VIEW</a></td>
-                </tr>
-            <?php endforeach ?>
+        <?php foreach($foodmenu as $fm): ?>
+            <tr>
+                <td><?= htmlspecialchars($fm->foodTitle) ?></td>
+                <td>- VIEW</td>
+            </tr>
+        <?php endforeach ?>
         </tbody>
     </table>
     
-    <a href="/add_bm" class="btn btn-warning">+ Add FoodMenu</a>
+    <a href="/add_fm" class="btn btn-warning">+ Add FoodMenu</a>
   </div>

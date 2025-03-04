@@ -14,12 +14,12 @@ CREATE TABLE bookmarks (
 	`url` VARCHAR(255) NOT NULL,
 	PRIMARY KEY(`id`)
 );
-CREATE TABLE foodMenu (
+CREATE TABLE foodmenu (
 	`id` INT(5) NOT NULL AUTO_INCREMENT,
 	`username` VARCHAR(16) NOT NULL,
 	`foodTitle` VARCHAR(255) NOT NULL,
 	`dishDescription` VARCHAR(255) NOT NULL,
-	`price` VARCHAR(255) NOT NULL,
+	`price` DECIMAL(10,2) NOT NULL,
 	PRIMARY KEY(`id`)
 );
 

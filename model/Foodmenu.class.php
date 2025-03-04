@@ -5,7 +5,7 @@ class Foodmenu {
     public $id, $username, $foodTitle, $dishDescription, $price;
 
     public static function createNewFoodmenu(Foodmenu $fm): bool {
-        return Database::execute("INSERT INTO `foodMenu` (`id`,'username' , `foodTitle`, `dishDescription`, `price`) VALUES(NULL, '" . $fm->username . "', '" . $fm->foodTitle . "', '" . $fm->dishDescription . "', '" . $fm->price . "')");
+        return Database::execute("INSERT INTO `foodMenu` (`id`,`username` , `foodTitle`, `dishDescription`, `price`) VALUES(NULL, '" . $fm->username . "', '" . $fm->foodTitle . "', '" . $fm->dishDescription . "', '" . $fm->price . "')");
     }
 
     public static function getUserFoodmenu(User $user) {

@@ -38,7 +38,7 @@ class FoodemenuController {
             $formErrors->add('fm_fP', 'Food Price cannot be blank');
         }
         
-        // 验证字段格式
+        
         if(!$formErrors->haveError() && !Validation::validateFm_fT($_POST["fm_fT"])) {
             $formErrors->add('fm_fT', 'Description must be 1-50 characters');
         }
@@ -49,7 +49,7 @@ class FoodemenuController {
             $formErrors->add('fm_fP', 'Price must be a positive number');
         }
         
-        // 数据库操作部分
+        
         if(!$formErrors->haveError()) {
             $newFM = new Foodmenu();
             $newFM->username = SessionController::getInstance()->getUser()->username;
@@ -62,7 +62,16 @@ class FoodemenuController {
                 $addFoodmenuPageView->render();
                 exit();
             } else {
-                $formErrors->add('fm_fTdD', 'Unable to add Foodmenu, please try again later');
+                if(!Validation::validateFm_fT($_POST["fm_fT"])){
+                    $formErrors->add('fm_fT', 'Unable to add Foodmenu, please try again later');
+                }
+                if(!Validation::validateFm_dD($_POST["fm_dD"])){
+                    $formErrors->add('fm_dD', 'Unable to add Foodmenu, please try again later');
+                }
+                if(!Validation::validateFm_fP($_POST["fm_fP"])){
+                    $formErrors->add('fm_fP', 'Unable to add Foodmenu, please try again later');
+                }
+                
             }
         }
         
@@ -78,11 +87,7 @@ class FoodemenuController {
             if($fm_id >= 1) { // Bookmark id should be >=1
                 // Check whether this ID belongs to the logged in user
                 $fm = Foodmenu::getFoodmenuByID($fm_id);
-                if($fm !== null && $fm->username === SessionController::getInstance()->getUser()->username) {
-                    // The bm_id is valid and belongs to the current user
-                    // Delete it, we ignore the result of the deletion
-                    $fm->delete();
-                }
+            
             }
         }
         // Silently return to the main page
