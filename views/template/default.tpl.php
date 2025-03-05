@@ -60,6 +60,15 @@
                     <?php
                     endif
                     ?>
+                    <?php
+                    if (SessionController::getInstance()->isUserLoggedIn()):
+                    ?>
+                    <li class="nav-item">
+                    <a class="nav-link" href="/fmo">Food Order</a>
+                    </li>
+                    <?php
+                    endif
+                    ?>
                 </ul>
                 <?php
                 if (SessionController::getInstance()->isUserLoggedIn()):

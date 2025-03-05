@@ -1,7 +1,7 @@
 <?php
 
 $appConfig=array(
-    "appTitle" => "PHPBookmark", 
+    "appTitle" => "PHPFoodWeb", 
     "mysql" => array(
         "host" => "localhost", 
         "username" => "bookmark_web",

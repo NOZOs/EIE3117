@@ -32,5 +32,12 @@ class Validation {
         }
         return false;
     }
+
+    public static function validateFm_fA(string $fA): bool {
+        if(is_numeric($fA) && $fA > 0){
+            return true;
+        }
+        return false;
+    }
 }
 ?>

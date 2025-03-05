@@ -79,20 +79,5 @@ class FoodmenuController {
         $addFoodmenuPageView->addVar('form_errors', $formErrors);
         $addFoodmenuPageView->render();
     }
-
-    public static function viewFoodmenu($fm_id) {
-        // This shows the delete bookmark page
-        $sessionController = SessionController::getInstance();
-        $sessionController->makeSureLoggedIn('/login'); // Why a logged out user want to access this page?
-        if(!empty($fm_id)) { // Bookmark ID should not be empty
-            if($fm_id >= 1) { // Bookmark id should be >=1
-                // Check whether this ID belongs to the logged in user
-                $fm = Foodmenu::getFoodmenuByID($fm_id);
-            
-            }
-        }
-        // Silently return to the main page
-        header("Location: /main");
-    }
 }
 ?>

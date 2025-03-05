@@ -25,6 +25,10 @@ $router->map('GET', '/add_bm', 'BookmarkController@showAddBookmark');
 $router->map('POST', '/add_bm', 'BookmarkController@processAddBookmark');
 $router->map('GET', '/add_fm', 'FoodmenuController@showAddFoodmenu');
 $router->map('POST', '/add_fm', 'FoodmenuController@processAddFoodmenu');
+$router->map('GET', '/d_fm', 'FoodmenuController@showAddFoodmenu');
+$router->map('POST', '/d_fm', 'FoodmenuController@processAddFoodmenu');
+$router->map('GET', '/fmo', 'FoodmenuorderController@showFoodmenuorder');
+$router->map('GET', '/delete_fmo/[i:fmo_id]?', 'FoodmenuorderController@deleteFoodmenuorder');
 $router->map('GET', '/delete_bm/[i:bm_id]?', 'BookmarkController@deleteBookmark');
 
 $match = $router->match();

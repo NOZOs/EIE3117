@@ -22,6 +22,15 @@ CREATE TABLE foodmenu (
 	`price` DECIMAL(10,2) NOT NULL,
 	PRIMARY KEY(`id`)
 );
+CREATE TABLE foodmenuorder (
+	`id` INT(5) NOT NULL AUTO_INCREMENT,
+	`username` VARCHAR(16) NOT NULL,
+	`customerName` VARCHAR(16) NOT NULL,
+	`foodTitle` VARCHAR(255) NOT NULL,
+	`price` DECIMAL(10,2) NOT NULL,
+	`amount` DECIMAL(10) NOT NULL,
+	PRIMARY KEY(`id`)
+);
 
 # Set MySQL Web User
 CREATE USER IF NOT EXISTS 'bookmark_web'@'%' IDENTIFIED BY '36XrVk7tMLUkv4dq';
