@@ -1,9 +1,9 @@
 <?php
 
 $appConfig=array(
-    "appTitle" => "PHPFoodWeb", 
+    "appTitle" => "Food Ordering System", 
     "mysql" => array(
-        "host" => "localhost", 
+        "host" => "127.0.0.1", 
         "username" => "bookmark_web",
         "password" => "36XrVk7tMLUkv4dq",  
         "database" => "bookmark_system"

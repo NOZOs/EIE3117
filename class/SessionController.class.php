@@ -1,53 +1,80 @@
 <?php
 require_once(dirname(__FILE__) . '/../model/User.class.php');
+
 class SessionController {
-    private static $instance=null;
+    private static $instance = null;
+
     function __construct() {
         session_start();
+        
+        if (!$this->isUserLoggedIn() && isset($_COOKIE['user_session'])) {
+            $cookieData = json_decode($_COOKIE['user_session'], true);
+            $user = User::getUserByUsername($cookieData['username']);
+            if ($user && $user->type === $cookieData['type']) {
+                $this->login($user); 
+            }
+        }
     }
+
     public static function getInstance() {
-        if(self::$instance == null) {
+        if (self::$instance == null) {
             self::$instance = new SessionController();
         }
         return self::$instance;
     }
-    function setRole(string $role) {
-        $_SESSION["user_role"]=$role;
+
+    private function setUserType(string $type) {
+        $_SESSION['user_type'] = $type;
     }
-    function getRole(): string {
-        $role = $_SESSION['user_role'] ?? 'guest';
-        return $role;
+
+    public function getUserType(): string {
+        return $_SESSION['user_type'] ?? 'guest';
     }
-    // Make sure the user is logged in, or else, redirect to $failureRedirectPath
-    function MakeSureLoggedIn(string $failureRedirectPath) {
-        if(!$this->isUserLoggedIn()) {
-            header("Location: " . $failureRedirectPath);
-            exit();
-        }
+
+    public function isUserLoggedIn(): bool {
+        return isset($_SESSION['user']);
     }
-    // Make sure the user is logged out, or else, redirect to $failureRedirectPath
-    function makeSureLoggedOut(string $failureRedirectPath) {
-        if($this->isUserLoggedIn()) {
-            header("Location: " . $failureRedirectPath);
-            exit();
-        }
+
+    public function getUser(): ?User {
+        return $_SESSION['user'] ?? null;
     }
-    function isUserLoggedIn(): bool {
-        return ($this->getRole() === "user");
+
+    public function setUser(User $user): void {
+        $_SESSION['user'] = $user;
+        $this->setUserType($user->type);
     }
-    function getUser(): ?User {
-        return $_SESSION["user"];
-    }
-    function setUser(?User $user): void {
-        $_SESSION["user"] = $user;
-    }
-    function login(User $user) {
-        $this->setRole('user');
+
+    public function login(User $user) {
         $this->setUser($user);
+        setcookie(
+            'user_session',
+            json_encode([
+                'username' => $user->username,
+                'type' => $user->type
+            ]),
+            time() + 3600 * 24 * 30, 
+            '/'
+        );
     }
-    function logout() {
-        $this->setRole('guest');
-        $this->setUser(null);
+
+    public function logout() {
+        unset($_SESSION['user']);
+        unset($_SESSION['user_type']);
+        setcookie('user_session', '', time() - 3600, '/');
+    }
+
+    public function makeSureLoggedIn(string $redirectPath) {
+        if (!$this->isUserLoggedIn()) {
+            header("Location: $redirectPath");
+            exit();
+        }
+    }
+
+    public function makeSureLoggedOut(string $redirectPath) {
+        if ($this->isUserLoggedIn()) {
+            header("Location: $redirectPath");
+            exit();
+        }
     }
 }
 ?>

@@ -4,32 +4,12 @@ use bookmark_system;
 
 # Create Tables
 CREATE TABLE users(
-	`username` VARCHAR(16) NOT NULL PRIMARY KEY,
-	`password` VARCHAR(40) NOT NULL,
-	`email` VARCHAR(100) NOT NULL
-);
-CREATE TABLE bookmarks (
-	`id` INT(5) NOT NULL AUTO_INCREMENT,
-	`username` VARCHAR(16) NOT NULL,
-	`url` VARCHAR(255) NOT NULL,
-	PRIMARY KEY(`id`)
-);
-CREATE TABLE foodmenu (
-	`id` INT(5) NOT NULL AUTO_INCREMENT,
-	`username` VARCHAR(16) NOT NULL,
-	`foodTitle` VARCHAR(255) NOT NULL,
-	`dishDescription` VARCHAR(255) NOT NULL,
-	`price` DECIMAL(10,2) NOT NULL,
-	PRIMARY KEY(`id`)
-);
-CREATE TABLE foodmenuorder (
-	`id` INT(5) NOT NULL AUTO_INCREMENT,
-	`username` VARCHAR(16) NOT NULL,
-	`customerName` VARCHAR(16) NOT NULL,
-	`foodTitle` VARCHAR(255) NOT NULL,
-	`price` DECIMAL(10,2) NOT NULL,
-	`amount` DECIMAL(10) NOT NULL,
-	PRIMARY KEY(`id`)
+  `username` VARCHAR(16) NOT NULL PRIMARY KEY,
+  `password` VARCHAR(255) NOT NULL,
+  `nick_name` VARCHAR(50) NOT NULL,
+  `email` VARCHAR(100) NOT NULL,
+  `type` ENUM('restaurant', 'consumer') NOT NULL DEFAULT 'consumer',
+  `profile_image` VARCHAR(255) DEFAULT NULL
 );
 
 # Set MySQL Web User

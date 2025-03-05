@@ -1,5 +1,5 @@
 
-    <div class="col-md-6 offset-md-3">
+<div class="col-md-6 offset-md-3">
         <div class="card">
             <div class="card-header text-center">
                 <h3 class="card-title">Login into the Application</h3>

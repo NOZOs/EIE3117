@@ -54,8 +54,11 @@ class LoginController {
             if($user != null) { // Is a user with this username and hashed password pair already exists?
                 // If yes, logs the user in
                 SessionController::getInstance()->login($user);
-                header("Location: /main");
-                exit(); // No futher execution is needed
+                $redirectPath = ($user->type === 'restaurant') 
+                    ? '/restaurant/dashboard' 
+                    : '/consumer/home';
+                header("Location: $redirectPath");
+                exit();
             }else{
                 // If not, username and/or password is wrong
                 $formErrors->add('username', ''); // Just show the red border around the "username"

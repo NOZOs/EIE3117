@@ -78,7 +78,6 @@ class ChangePasswordController {
         
         $changePasswordPageView->addVar('form_errors', $formErrors);
         $changePasswordPageView->render();
-        
     }
 }
 ?>
