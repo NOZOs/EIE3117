@@ -1,5 +1,5 @@
 <?php
-require_once(dirname(__FILE__) . '/../class/Database.class.php'); 
+require_once(dirname(__FILE__) . '/../class/Database.class.php');
 
 class User {
     public $username, $password, $email, $nick_name, $type, $profile_image;
@@ -45,12 +45,6 @@ class User {
 
     public static function updateUserPassword(User $user, string $newPassword): bool {
         return Database::execute("UPDATE `users` SET `password`='" . $newPassword . "' WHERE `username`='" . $user->username . "'");
-    }
-
-    public static function updateProfileImage(User $user, string $filename): bool {
-        return Database::execute(
-            "UPDATE users SET profile_image = '" . $filename . "' WHERE username = '" . $user->username . "'"
-        );
     }
 }
 ?>

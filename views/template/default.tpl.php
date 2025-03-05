@@ -13,12 +13,10 @@
         <title><?php echo $GLOBALS["appConfig"]["appTitle"] ?><?php echo (!empty($pageTitle) ? ' - ' . $pageTitle : '') ?></title>
         <!--CSS -->
         <link href="/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        <link href="/css/style.css" rel="stylesheet">
         <link rel="stylesheet" href="/css/bootstrap-icons.css">
         <?php View::IncludeUIElements('css', 'common'); // Include common.css if exists ?>
         <?php foreach($customCSS as $css) { View::IncludeUIElements('css', $css); } // Include Custom CSS if exists ?>
         <?php View::IncludeUIElements('css', $currentView->getViewName()); // Include <viewname>.css CSS if exists  ?>
-        <?php View::IncludeUIElements('css', 'style.css'); ?>
         <!-- JS -->
         <script
                 src="/js/jquery-3.6.0.min.js" integrity="sha384-vtXRMe3mGCbOeY7l30aIg8H9p3GdeSe4IFlP6G8JMa7o7lXvnz3GFKzPxzJdPfGK" crossorigin="anonymous"
@@ -91,5 +89,6 @@
     <main class="container">
         <?php $currentView->showMainContent(compact(array_keys(get_defined_vars()))); ?>
     </main>
+
 </body>
 </html>

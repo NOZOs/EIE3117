@@ -13,7 +13,7 @@ class ConsumerController {
             exit();
         }
 
-        $view = new View('consumer_home', 'Home');
+        $view = new View('consumer_home', 'Consumer Home');
         $view->render();
     }
 }

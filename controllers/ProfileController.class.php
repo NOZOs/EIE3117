@@ -13,7 +13,6 @@ class ProfileController {
         $currentUser = $session->getUser();
         $formErrors = new FormErrors();
 
-        // 從 Session 獲取上傳錯誤（如果有）
         if (isset($_SESSION['upload_errors'])) {
             $formErrors = $_SESSION['upload_errors'];
             unset($_SESSION['upload_errors']);
@@ -31,7 +30,6 @@ class ProfileController {
 
         $formErrors = new FormErrors();
 
-        // 驗證文件上傳
         if (!isset($_FILES['profile_image']) || $_FILES['profile_image']['error'] !== UPLOAD_ERR_OK) {
             $formErrors->add('profile_image', 'Please select a valid image file.');
         } else {
@@ -44,11 +42,11 @@ class ProfileController {
             } elseif ($file['size'] > $maxSize) {
                 $formErrors->add('profile_image', 'File size must be less than 2MB.');
             } else {
-                // 保存文件到指定目錄
+
                 $uploadDir = '/var/www/html/upload_image/';
                 $filename = uniqid('profile_') . '.' . pathinfo($file['name'], PATHINFO_EXTENSION);
                 if (move_uploaded_file($file['tmp_name'], $uploadDir . $filename)) {
-                    // 更新用戶頭像
+
                     $user = $session->getUser();
                     $user->profile_image = $filename;
                     User::updateProfileImage($user, $filename);
@@ -57,8 +55,6 @@ class ProfileController {
                 }
             }
         }
-
-        // 存儲錯誤並重定向
         $_SESSION['upload_errors'] = $formErrors;
         header("Location: /profile");
         exit();

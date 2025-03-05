@@ -7,7 +7,6 @@ class IndexController {
     public static function showIndex() {
         $session = SessionController::getInstance();
         
-        // if user login
         if ($session->isUserLoggedIn()) {
             $redirectPath = ($session->getUserType() === 'restaurant') 
                 ? '/restaurant/dashboard' 
@@ -16,7 +15,6 @@ class IndexController {
             exit();
         }
 
-        // if user not login
         $view = new View('index', 'Home');
         $view->render();
     }

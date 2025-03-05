@@ -11,7 +11,6 @@ $router->setBasePath("");
 
 // Route definitions
 $router->map('GET', '/', 'IndexController@showIndex');
-$router->map('GET', '/home', 'IndexController@showIndex');
 $router->map('GET', '/login', 'LoginController@showLogin');
 $router->map('POST', '/login', 'LoginController@processLogin');
 $router->map('GET', '/register', 'RegisterController@showRegister');
@@ -25,12 +24,16 @@ $router->map('GET', '/main', 'MainController@showMain');
 $router->map('GET', '/add_bm', 'BookmarkController@showAddBookmark');
 $router->map('POST', '/add_bm', 'BookmarkController@processAddBookmark');
 $router->map('GET', '/delete_bm/[i:bm_id]?', 'BookmarkController@deleteBookmark');
+
+//new router
 $router->map('GET', '/restaurant/dashboard', 'RestaurantController@showDashboard');
 $router->map('GET', '/consumer/home', 'ConsumerController@showHome');
-$router->map('GET', '/access-denied', 'ErrorController@showAccessDenied');
+$router->map('GET', '/restaurant/dashboard', 'RestaurantController@showDashboard');
+$router->map('GET', '/consumer/home', 'ConsumerController@showHome');
+$router->map('GET', '/', 'IndexController@showIndex');
+$router->map('GET', '/home', 'IndexController@showIndex');
 $router->map('GET', '/profile', 'ProfileController@showProfile');
 $router->map('POST', '/profile/upload', 'ProfileController@processProfileImageUpload');
-
 
 $match = $router->match();
 

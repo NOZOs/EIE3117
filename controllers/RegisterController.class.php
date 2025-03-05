@@ -5,7 +5,6 @@ require_once(dirname(__FILE__) . '/../class/FormErrors.class.php');
 require_once(dirname(__FILE__) . '/../class/SessionController.class.php');
 require_once(dirname(__FILE__) . '/../class/Validation.class.php');
 require_once(dirname(__FILE__) . '/../model/User.class.php');
-
 class RegisterController {
     public static function showRegister() {
         // This shows the register page
@@ -89,7 +88,7 @@ class RegisterController {
                 $user->password = sha1($_POST["password"]);
                 $user->email = $_POST["email"];
                 $user->nick_name = $_POST["nick_name"];  
-                $user->type = $_POST["type"];             
+                $user->type = $_POST["type"];         
 
                 if(User::createNewUser($user)) {
                     // Register succeed

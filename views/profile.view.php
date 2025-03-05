@@ -4,10 +4,10 @@
             <h3 class="card-title">User Profile</h3>
         </div>
         <div class="card-body">
-            <!-- 頭像上傳表單 -->
+
             <form accept-charset="UTF-8" role="form" method="post" action="/profile/upload" enctype="multipart/form-data">
                 <fieldset>
-                    <!-- 頭像預覽和上傳 -->
+
                     <div class="input-group has-validation mb-4">
                         <div class="text-center w-100">
                             <img id="profile-preview" 
@@ -35,7 +35,6 @@
                 </fieldset>
             </form>
 
-            <!-- 用戶信息顯示 -->
             <div class="input-group has-validation">
                 <label class="input-group-text">Login ID</label>
                 <input class="form-control" value="<?= $user->username ?>" readonly>
@@ -59,7 +58,6 @@
     </div>
 </div>
 
-<!-- 實時預覽上傳的頭像 -->
 <script>
 document.getElementById('profile_image').addEventListener('change', function(e) {
     const reader = new FileReader();

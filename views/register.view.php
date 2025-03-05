@@ -6,7 +6,7 @@
         <div class="card-body">
             <form accept-charset="UTF-8" role="form" method="post" action="/register">
                 <fieldset>
-                    
+
                     <div class="input-group has-validation">
                         <label class="input-group-text" for="username">Username</label>
                         <input class="form-control<?php echo($form_errors->has('username') ? ' is-invalid' : '') ?>" placeholder="Username" name="username" type="text" required autofocus>
@@ -17,7 +17,7 @@
                         <?php endif; ?>
                     </div>
 
-                    <div class="input-group has-validation">
+                  <div class="input-group has-validation">
                         <label class="input-group-text" for="password">Password</label>
                         <input class="form-control<?php echo($form_errors->has('password') ? ' is-invalid' : '') ?>" placeholder="Password" name="password" type="password" required>
                         <?php if($form_errors->has('password')): ?>

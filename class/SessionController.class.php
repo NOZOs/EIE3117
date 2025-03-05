@@ -6,7 +6,7 @@ class SessionController {
 
     function __construct() {
         session_start();
-        
+
         if (!$this->isUserLoggedIn() && isset($_COOKIE['user_session'])) {
             $cookieData = json_decode($_COOKIE['user_session'], true);
             $user = User::getUserByUsername($cookieData['username']);
