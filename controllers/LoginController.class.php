@@ -53,6 +53,7 @@ class LoginController {
             $user = User::getUserByUsernameAndPassword($_POST["username"], sha1($_POST["password"]));
             if ($user != null) {
                 SessionController::getInstance()->login($user);
+                //If the user is logged in, redirect based on type.
                 $redirectPath = ($user->type === 'restaurant') 
                     ? '/restaurant/dashboard' 
                     : '/consumer/home';

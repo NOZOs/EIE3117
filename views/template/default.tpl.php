@@ -71,7 +71,7 @@
                             Logged in as <strong><?=SessionController::getInstance()->getUser()->username?></strong>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="/profile">Profile</a></li>
+                            <li><a class="dropdown-item" href="/profile">Profile</a></li>  <!-- add a profile button -->
                             <li><a class="dropdown-item" href="/change_password">Change Password</a></li>
                             <li><a class="dropdown-item" href="/logout">Log Out</a></li>
                         </ul>

@@ -8,6 +8,7 @@ class ConsumerController {
         $session = SessionController::getInstance();
         $session->makeSureLoggedIn('/login');
 
+        //if user type not consumer, exit
         if ($session->getUserType() !== 'consumer') {
             header("Location: /access-denied");
             exit();

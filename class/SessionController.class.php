@@ -7,6 +7,7 @@ class SessionController {
     function __construct() {
         session_start();
 
+        //Check cookie for automatic login.
         if (!$this->isUserLoggedIn() && isset($_COOKIE['user_session'])) {
             $cookieData = json_decode($_COOKIE['user_session'], true);
             $user = User::getUserByUsername($cookieData['username']);
@@ -41,9 +42,10 @@ class SessionController {
 
     public function setUser(User $user): void {
         $_SESSION['user'] = $user;
-        $this->setUserType($user->type);
+        $this->setUserType($user->type); //store user type
     }
 
+    //create session and cookie when login
     public function login(User $user) {
         $this->setUser($user);
         setcookie(
@@ -52,15 +54,16 @@ class SessionController {
                 'username' => $user->username,
                 'type' => $user->type
             ]),
-            time() + 3600 * 24 * 30, 
+            time() + 3600 * 24 * 30, //set cookie expire day to 30days
             '/'
         );
     }
 
+
     public function logout() {
         unset($_SESSION['user']);
         unset($_SESSION['user_type']);
-        setcookie('user_session', '', time() - 3600, '/');
+        setcookie('user_session', '', time() - 3600, '/'); //Expire and delete the cookie.
     }
 
     public function makeSureLoggedIn(string $redirectPath) {

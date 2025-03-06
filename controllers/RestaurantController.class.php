@@ -8,6 +8,7 @@ class RestaurantController {
         $session = SessionController::getInstance();
         $session->makeSureLoggedIn('/login');
 
+        //if user type not restaurant, exit
         if ($session->getUserType() !== 'restaurant') {
             header("Location: /access-denied");
             exit();

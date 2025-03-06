@@ -7,6 +7,7 @@ class IndexController {
     public static function showIndex() {
         $session = SessionController::getInstance();
         
+        //This make the index page no longer the default home page for restaurants and consumers.
         if ($session->isUserLoggedIn()) {
             $redirectPath = ($session->getUserType() === 'restaurant') 
                 ? '/restaurant/dashboard' 
