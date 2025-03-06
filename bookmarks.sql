@@ -28,7 +28,6 @@ CREATE TABLE foodmenuorder (
 	`customerName` VARCHAR(16) NOT NULL,
 	`foodTitle` VARCHAR(255) NOT NULL,
 	`price` DECIMAL(10,2) NOT NULL,
-	`amount` DECIMAL(10) NOT NULL,
 	PRIMARY KEY(`id`)
 );
 

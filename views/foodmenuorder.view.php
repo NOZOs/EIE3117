@@ -9,7 +9,6 @@
                 <th class="col-md-1">Customer Name</th>
                 <th class="col-md-2">Food Title</th>
                 <th class="col-md-1">Price</th>
-                <th class="col-md-1">Amount</th>
                 <th class="col-md-1">Done?</th>
             </tr>
         </thead>
@@ -19,7 +18,6 @@
                 <td><?=$fmo->customerName?></td>
                 <td><?=$fmo->foodTitle?></td>
                 <td><?=$fmo->price?></td>
-                <td><?=$fmo->amount?></td>
                 <td><a href="/delete_fmo/<?=$fmo->id?>" class="btn btn-success">- DONE</a></td>
             </tr>
         <?php endforeach ?>

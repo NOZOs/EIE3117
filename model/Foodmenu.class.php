@@ -28,6 +28,26 @@ class Foodmenu {
         return $result;
     }
 
+    public static function getUserFoodmenudetail() {
+        $result=[];
+        $query = Database::query("SELECT * FROM `foodMenu` WHERE `id`='" . "'");
+        if($query !== false) {
+            $queryResult = $query->fetchAll();
+            foreach($queryResult as $r) {
+                $fm = new Foodmenu();
+                $fm->id=$r["id"];
+                $fm->username=$r["username"];
+                $fm->foodTitle=$r["foodTitle"];
+                $fm->dishDescription=$r["dishDescription"];
+                $fm->price=$r["price"];
+                array_push($result, $fm);
+            }
+        }else{
+            $result=false;
+        }
+        return $result;
+    }
+
     public static function getFoodmenuByID(int $fm_id): ?Foodmenu {
         $result=null;
         $query = Database::query("SELECT * FROM `foodMenu` WHERE `id`='" . $fm_id . "'");
@@ -43,6 +63,9 @@ class Foodmenu {
         }
         return $result;
   
+    }
+    public function buy(): bool {
+        return Database::execute("DELETE FROM `foodmenuorder` WHERE `id`='" . $this->id . "'");
     }
 }
 ?>

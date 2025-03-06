@@ -16,7 +16,7 @@
             <tr>
                 <td><?= htmlspecialchars($fm->username) ?></td>
                 <td><?= htmlspecialchars($fm->foodTitle) ?></td>
-                <td><a href="/d_fm" class="btn btn-primary">VIEW</a></td>
+                <td><a href="/d_fm?id=<?= $fm->id ?>" class="btn btn-primary">VIEW</a></td>
                 
             </tr>
         <?php endforeach ?>

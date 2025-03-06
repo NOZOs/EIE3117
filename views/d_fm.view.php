@@ -1,38 +1,31 @@
 <div class="bg-light p-5 rounded">
-    <h1> PHPFoodMenu</h1>
+    <h1>PHPFoodMenu</h1>
     <p class="lead">Menu Detail</p>
-    <p>Logged in as <strong><?=SessionController::getInstance()->getUser()->username;?></strong></p>
-    <form accept-charset="UTF-8" role="form" method="post" action="/d_fm">
-        // add a tablr can show the current dish title eds and price 
-        <table class="table table-hover"> 
-            <thead>
-                <tr>
-                    <th class="col-md-3">Food Title</th>
-                    <th class="col-md-8">Dish Description</th>
-                    <th class="col-md-2">Price</th>
-                </tr>
-            </thead>
-            <tbody>
-
-            </tbody>
-        </table>
-
-        <fieldset>
-            <div class="input-group has-validation">
-                <label class="input-group-text" for="dfm_">FM: </label>
-                <input class="form-control" placeholder="enter amount of dish="fm_fA" type="text" required autofocus>
-                <?php if($form_errors->has('fm_fA')): ?>
-                    <span class="invalid-feedback">
-                                <strong><?php echo $form_errors->getErrorMsg('fm_fA'); ?></strong>
-
-                            </span>
-                <?php endif ?>
-                
-            </div>
-            
-            <div class="d-grid">
-                <input class="btn btn-lg btn-warning" type="submit" value="Buy it">
-            </div>
-        </fieldset>
-    </form>
+    <p>Logged in as <strong><?= SessionController::getInstance()->getUser()->username; ?></strong></p>
+    <?php if (isset($foodmenu) && !empty($foodmenu)): ?>
+        <?php $fm = $foodmenu[0]; ?>
+        <form accept-charset="UTF-8" role="form" method="post" action="/buy_fm">
+            <input type="hidden" name="fm_id" value="<?= htmlspecialchars($fm->id) ?>">
+            <table class="table table-hover"> 
+                <thead>
+                    <tr>
+                        <th>Food Title</th>
+                        <th>Dish Description</th>
+                        <th>Price</th>
+                        <th>Buy</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><?= htmlspecialchars($fm->foodTitle) ?></td>   
+                        <td><?= htmlspecialchars($fm->dishDescription) ?></td>   
+                        <td>$<?= htmlspecialchars($fm->price) ?></td>
+                        <td><input class="btn btn-lg btn-warning" type="submit" value="Buy!"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    <?php elseif (isset($error)): ?>
+        <p class="text-danger"><?= htmlspecialchars($error) ?></p>
+    <?php endif; ?>
 </div>

@@ -33,8 +33,8 @@ class FoodmenuorderController {
                 }
             }
         }   
-        // Silently return to the main page
-        header("Location: /main");
+        // Silently return to the order page
+        header("Location: /fmo");
     }
 }
 ?>
