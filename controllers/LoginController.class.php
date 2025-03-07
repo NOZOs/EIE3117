@@ -51,16 +51,14 @@ class LoginController {
         // We now check whether the same username exists and logs user in
         if(!$formErrors->haveError()) {
             $user = User::getUserByUsernameAndPassword($_POST["username"], sha1($_POST["password"]));
-            if ($user != null) {
+            if($user != null) { // Is a user with this username and hashed password pair already exists?
+                // If yes, logs the user in
                 SessionController::getInstance()->login($user);
-                //If the user is logged in, redirect based on type.
-                $redirectPath = ($user->type === 'restaurant') 
-                    ? '/restaurant/dashboard' 
-                    : '/consumer/home';
-                header("Location: $redirectPath");
-                exit();
-            } else {
-                $formErrors->add('username', '');
+                header("Location: /");
+                exit(); // No futher execution is needed
+            }else{
+                // If not, username and/or password is wrong
+                $formErrors->add('username', ''); // Just show the red border around the "username"
                 $formErrors->add('password', 'Incorrect username and/or password.');
             }
         }

@@ -1,5 +1,5 @@
 <div class="bg-light p-5 rounded">
-    <h1><img src="images/bookmark.gif" /> PHPBookmark</h1>
+    <h1>PHPBookmark</h1>
     <p class="lead">Change Password</p>
     <p>Logged in as <strong><?=SessionController::getInstance()->getUser()->username;?></strong></p>
     <form accept-charset="UTF-8" role="form" method="post" action="/change_password">

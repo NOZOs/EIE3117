@@ -38,7 +38,7 @@
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
                     <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/">Home</a>
-                    </li>
+                    </li> 
                     <?php
                     if (!SessionController::getInstance()->isUserLoggedIn()):
                     ?>
@@ -60,6 +60,15 @@
                     <?php
                     endif
                     ?>
+                    <?php
+                    if (SessionController::getInstance()->isUserLoggedIn() && SessionController::getInstance()->isRestaurant()):
+                    ?>
+                    <li class="nav-item">
+                    <a class="nav-link" href="/fmo">Food Order</a>
+                    </li>
+                    <?php
+                    endif
+                    ?>
                 </ul>
                 <?php
                 if (SessionController::getInstance()->isUserLoggedIn()):
@@ -71,7 +80,7 @@
                             Logged in as <strong><?=SessionController::getInstance()->getUser()->username?></strong>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="/profile">Profile</a></li>  <!-- add a profile button -->
+                        <li><a class="dropdown-item" href="/profile">Profile</a></li>  <!-- add a profile button -->
                             <li><a class="dropdown-item" href="/change_password">Change Password</a></li>
                             <li><a class="dropdown-item" href="/logout">Log Out</a></li>
                         </ul>
