@@ -12,7 +12,7 @@ CREATE TABLE users(
     `profile_image` VARCHAR(255) DEFAULT NULL
 );
 
-CREATE TABLE foodmenu (
+CREATE TABLE foodMenu (
 	`id` INT(5) NOT NULL AUTO_INCREMENT,
 	`username` VARCHAR(16) NOT NULL,
 	`foodTitle` VARCHAR(255) NOT NULL,

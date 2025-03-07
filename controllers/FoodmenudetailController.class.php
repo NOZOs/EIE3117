@@ -37,7 +37,7 @@ class FoodmenudetailController {
 
     public static function processBuyFoodmenu() {
         $sessionController = SessionController::getInstance();
-        $sessionController->makeSureLoggedIn('/login'); // Redirect if not logged in
+        $sessionController->makeSureLoggedIn('/login'); 
 
         $fm_id = isset($_POST['fm_id']) ? (int)$_POST['fm_id'] : null;
 
@@ -48,7 +48,7 @@ class FoodmenudetailController {
                 // Create a new Foodmenuorder object
                 $fmo = new Foodmenuorder();
                 $fmo->username = $fm->username; // Use the restaurant's username from foodmenu
-                $fmo->customerName = $sessionController->getUser()->username; // Logged-in user as customer
+                $fmo->customerName = $sessionController->getUser()->username; 
                 $fmo->foodTitle = $fm->foodTitle;
                 $fmo->price = $fm->price;
 

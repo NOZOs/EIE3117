@@ -73,5 +73,6 @@ class SessionController {
         unset($_SESSION['user_type']);
         setcookie('user_session', '', time() - 3600, '/'); //Expire and delete the cookie.
     }
+
 }
 ?>

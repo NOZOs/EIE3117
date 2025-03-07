@@ -27,6 +27,7 @@ $router->map('GET', '/d_fm', 'FoodmenudetailController@showFoodmenudetail');
 $router->map('POST', '/buy_fm', 'FoodmenudetailController@processBuyFoodmenu');
 $router->map('GET', '/fmo', 'FoodmenuorderController@showFoodmenuorder');
 $router->map('GET', '/delete_fmo/[i:fmo_id]?', 'FoodmenuorderController@deleteFoodmenuorder');
+$router->map('GET', '/my_foodmenu', 'MyFoodmenuController@showMyFoodmenu');
 
 $router->map('GET', '/home', 'IndexController@showIndex');
 $router->map('GET', '/profile', 'ProfileController@showProfile');

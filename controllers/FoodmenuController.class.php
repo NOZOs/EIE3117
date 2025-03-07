@@ -53,7 +53,7 @@ class FoodmenuController {
         
         if(!$formErrors->haveError()) {
             $newFM = new Foodmenu();
-            $newFM->username = SessionController::getInstance()->getUser()->nick_name;
+            $newFM->username = SessionController::getInstance()->getUser()->username;
             $newFM->foodTitle = $_POST["fm_fT"];
             $newFM->dishDescription = $_POST["fm_dD"];
             $newFM->price= $_POST["fm_fP"];

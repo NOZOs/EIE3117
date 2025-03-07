@@ -6,9 +6,11 @@
     <table class="table table-hover table-striped table-bordered align-middle text-center">
         <thead>
             <tr>
-                <th class="col-md-3">Resturant</th>
-                <th class="col-md-8">Food Title</th>
-                <th class="col-md-2">Detail</th>
+        
+                <th class="col-md-3">Resturant Name</th>
+                <th class="col-md-3">Food Title</th>
+                <th class="col-md-3">Dish despcription</th>
+                <th class="col-md-3">Price</th>
             </tr>
         </thead>
         <tbody>
@@ -22,6 +24,12 @@
         <?php endforeach ?>
         </tbody>
     </table>
-
+    <?php
+    if (SessionController::getInstance()->isRestaurant()):
+    ?>
+    <a href="/add_fm" class="btn btn-warning">+ Add FoodMenu</a>
+    <?php
+    endif
+    ?>
   </div>
   

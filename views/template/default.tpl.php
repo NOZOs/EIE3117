@@ -52,14 +52,21 @@
                     endif
                     ?>
                     <?php
-                    if (SessionController::getInstance()->isUserLoggedIn()):
+                    if (SessionController::getInstance()->isUserLoggedIn()&& !SessionController::getInstance()->isRestaurant()):
                     ?>
                     <li class="nav-item">
-                    <a class="nav-link" href="/main">Main Page</a>
+                    <a class="nav-link" href="/main">Menu List</a>
                     </li>
                     <?php
                     endif
                     ?>
+                    <?php
+                    if (SessionController::getInstance()->isUserLoggedIn() && SessionController::getInstance()->isRestaurant() ):
+                    ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/my_foodmenu">My Food Menu</a>
+                        </li>
+                    <?php endif; ?>
                     <?php
                     if (SessionController::getInstance()->isUserLoggedIn() && SessionController::getInstance()->isRestaurant()):
                     ?>

@@ -42,5 +42,11 @@ class User {
     public static function updateUserPassword(User $user, string $newPassword): bool {
         return Database::execute("UPDATE `users` SET `password`='" . $newPassword . "' WHERE `username`='" . $user->username . "'");
     }
+
+    public static function updateProfileImage(User $user, string $filename): bool {
+        return Database::execute(
+            "UPDATE users SET profile_image = '" . $filename . "' WHERE username = '" . $user->username . "'"
+        );
+    }
 }
 ?>
