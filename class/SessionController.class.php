@@ -4,6 +4,14 @@ class SessionController {
     private static $instance=null;
     function __construct() {
         session_start();
+        //Check cookie for automatic login.
+        if (!$this->isUserLoggedIn() && isset($_COOKIE['user_session'])) {
+            $cookieData = json_decode($_COOKIE['user_session'], true);
+            $user = User::getUserByUsername($cookieData['username']);
+            if ($user && $user->type === $cookieData['type']) {
+                $this->login($user); 
+            }
+        }
     }
     public static function getInstance() {
         if(self::$instance == null) {
@@ -14,6 +22,19 @@ class SessionController {
     function setRole(string $role) {
         $_SESSION["user_role"]=$role;
     }
+
+    private function setUserType(string $type) {
+        $_SESSION['user_type'] = $type;
+    }
+
+    function isRestaurant(): bool {
+        if ($this->isUserLoggedIn()) {
+            $user = $this->getUser();
+            return $user && $user->type === 'restaurant';
+        }
+        return false;
+    }
+
     function getRole(): string {
         $role = $_SESSION['user_role'] ?? 'guest';
         return $role;
@@ -48,6 +69,10 @@ class SessionController {
     function logout() {
         $this->setRole('guest');
         $this->setUser(null);
+        unset($_SESSION['user']);
+        unset($_SESSION['user_type']);
+        setcookie('user_session', '', time() - 3600, '/'); //Expire and delete the cookie.
     }
+
 }
 ?>

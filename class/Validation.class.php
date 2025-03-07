@@ -14,12 +14,7 @@ class Validation {
         return (strlen($password) >= 6 && strlen($password) <= 16);
     }
     // Check whether a URL is in valid format and reachable
-    public static function validateURL(string $url): bool {
-        $proto = strstr($url, 'http://');
-        if($proto === false) return false;
-        if (!(@fopen($url, 'r'))) return false; // WARNING: HUGE SECURITY VULNERABILITY, JUST FOR DEMO
-        return true;
-    }
+
     public static function validateFm_fT(string $fT): bool {
         return (strlen($fT) >= 1 && strlen($fT) <= 50);
     }

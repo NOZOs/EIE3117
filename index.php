@@ -21,15 +21,17 @@ $router->map('GET', '/forgot_password', 'ForgotPasswordController@showForgotPass
 $router->map('POST', '/forgot_password', 'ForgotPasswordController@processForgotPassword');
 $router->map('GET', '/logout', 'LogoutController@logout');
 $router->map('GET', '/main', 'MainController@showMain');
-$router->map('GET', '/add_bm', 'BookmarkController@showAddBookmark');
-$router->map('POST', '/add_bm', 'BookmarkController@processAddBookmark');
 $router->map('GET', '/add_fm', 'FoodmenuController@showAddFoodmenu');
 $router->map('POST', '/add_fm', 'FoodmenuController@processAddFoodmenu');
 $router->map('GET', '/d_fm', 'FoodmenudetailController@showFoodmenudetail');
 $router->map('POST', '/buy_fm', 'FoodmenudetailController@processBuyFoodmenu');
 $router->map('GET', '/fmo', 'FoodmenuorderController@showFoodmenuorder');
 $router->map('GET', '/delete_fmo/[i:fmo_id]?', 'FoodmenuorderController@deleteFoodmenuorder');
-$router->map('GET', '/delete_bm/[i:bm_id]?', 'BookmarkController@deleteBookmark');
+$router->map('GET', '/my_foodmenu', 'MyFoodmenuController@showMyFoodmenu');
+
+$router->map('GET', '/home', 'IndexController@showIndex');
+$router->map('GET', '/profile', 'ProfileController@showProfile');
+$router->map('POST', '/profile/upload', 'ProfileController@processProfileImageUpload');
 
 $match = $router->match();
 

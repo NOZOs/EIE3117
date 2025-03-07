@@ -54,7 +54,7 @@ class LoginController {
             if($user != null) { // Is a user with this username and hashed password pair already exists?
                 // If yes, logs the user in
                 SessionController::getInstance()->login($user);
-                header("Location: /main");
+                header("Location: /");
                 exit(); // No futher execution is needed
             }else{
                 // If not, username and/or password is wrong
