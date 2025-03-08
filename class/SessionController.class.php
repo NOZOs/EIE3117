@@ -63,8 +63,17 @@ class SessionController {
         $_SESSION["user"] = $user;
     }
     function login(User $user) {
-        $this->setRole('user');
         $this->setUser($user);
+        $this->setRole('user');
+        setcookie(
+            'user_session',
+            json_encode([
+                'username' => $user->username,
+                'type' => $user->type
+            ]),
+            time() + 3600 * 24 * 30, 
+            '/'
+        );
     }
     function logout() {
         $this->setRole('guest');
