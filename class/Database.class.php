@@ -28,21 +28,22 @@ class Database {
     public function getPDO(): PDO {
         return self::$pdoObject;
     }
-    public static function query(string $query): PDOStatement {
+    public static function query(string $query, array $params = []): PDOStatement {
         try {
-            return Database::getInstance()->getPDO()->query($query);
-        }catch (PDOException $e) {
+            $stmt = self::getInstance()->getPDO()->prepare($query);
+            $stmt->execute($params);  
+            return $stmt;
+        } catch (PDOException $e) {
             self::handlePDOException($e);
         }
     }
-    public static function execute(string $statement): bool {
+
+    public static function execute(string $statement, array $params = []): bool {
         try {
-            $exec = Database::getInstance()->getPDO()->exec($statement);
-            if($exec === 0 || $exec === false) {
-                return false;
-            }
-            return true;
-        }catch (PDOException $e) {
+            $stmt = self::getInstance()->getPDO()->prepare($statement);
+            $result = $stmt->execute($params);  
+            return $result && $stmt->rowCount() > 0;
+        } catch (PDOException $e) {
             self::handlePDOException($e);
         }
     }

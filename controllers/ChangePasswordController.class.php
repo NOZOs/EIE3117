@@ -19,6 +19,9 @@ class ChangePasswordController {
     }
 
     public static function processChangePassword() {
+        if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+            die("CSRF fail");
+        }
         // This shows the submitted change password page
         $sessionController = SessionController::getInstance();
         $sessionController->makeSureLoggedIn('/login'); // Why a logged out user want to access this page?
@@ -78,6 +81,7 @@ class ChangePasswordController {
         
         $changePasswordPageView->addVar('form_errors', $formErrors);
         $changePasswordPageView->render();
+        
     }
 }
 ?>

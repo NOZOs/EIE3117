@@ -18,6 +18,9 @@ class LoginController {
     }
 
     public static function processLogin() {
+        if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+            die("CSRF fail");
+        }
         // This shows the submitted login page
         $sessionController = SessionController::getInstance();
         $sessionController->makeSureLoggedOut('/'); // Why a logged in user want to access this page?
@@ -54,7 +57,7 @@ class LoginController {
             if($user != null) { // Is a user with this username and hashed password pair already exists?
                 // If yes, logs the user in
                 SessionController::getInstance()->login($user);
-                header("Location: /main");
+                header("Location: /");
                 exit(); // No futher execution is needed
             }else{
                 // If not, username and/or password is wrong

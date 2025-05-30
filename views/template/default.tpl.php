@@ -38,7 +38,7 @@
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
                     <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/">Home</a>
-                    </li>
+                    </li> 
                     <?php
                     if (!SessionController::getInstance()->isUserLoggedIn()):
                     ?>
@@ -52,10 +52,26 @@
                     endif
                     ?>
                     <?php
-                    if (SessionController::getInstance()->isUserLoggedIn()):
+                    if (SessionController::getInstance()->isUserLoggedIn()&& !SessionController::getInstance()->isRestaurant()):
                     ?>
                     <li class="nav-item">
-                    <a class="nav-link" href="/main">Main Page</a>
+                    <a class="nav-link" href="/main">Menu List</a>
+                    </li>
+                    <?php
+                    endif
+                    ?>
+                    <?php
+                    if (SessionController::getInstance()->isUserLoggedIn() && SessionController::getInstance()->isRestaurant() ):
+                    ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/my_foodmenu">My Food Menu</a>
+                        </li>
+                    <?php endif; ?>
+                    <?php
+                    if (SessionController::getInstance()->isUserLoggedIn() && SessionController::getInstance()->isRestaurant()):
+                    ?>
+                    <li class="nav-item">
+                    <a class="nav-link" href="/fmo">Food Order</a>
                     </li>
                     <?php
                     endif
@@ -68,9 +84,10 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="bi-person-square"></i>
-                            Logged in as <strong><?=SessionController::getInstance()->getUser()->username?></strong>
+                            Logged in as <strong><?= htmlspecialchars(SessionController::getInstance()->getUser()->username, ENT_QUOTES, 'UTF-8') ?></strong>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="/profile">Profile</a></li>  <!-- add a profile button -->
                             <li><a class="dropdown-item" href="/change_password">Change Password</a></li>
                             <li><a class="dropdown-item" href="/logout">Log Out</a></li>
                         </ul>

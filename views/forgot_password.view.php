@@ -6,6 +6,7 @@
             </div>
             <div class="card-body">
             <form accept-charset="UTF-8" role="form" method="post" action="/forgot_password">
+                <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
                 <fieldset>
                     <div class="input-group has-validation">
                         <input class="form-control<?php echo($form_errors->has('username') ? ' is-invalid' : '') ?>" placeholder="Username" name="username" type="text" required autofocus>

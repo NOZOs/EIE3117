@@ -19,6 +19,9 @@ class ForgotPasswordController {
     }
 
     public static function processForgotPassword() {
+        if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+            die("CSRF fail");
+        }
         // This shows the submitted forgot password page
         $sessionController = SessionController::getInstance();
         $sessionController->makeSureLoggedOut('/'); // Why a logged in user want to access this page?

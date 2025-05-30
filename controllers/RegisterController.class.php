@@ -18,6 +18,9 @@ class RegisterController {
     }
 
     public static function processRegister() {
+        if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+            die("CSRF fail");
+        }
         // This shows the submitted register page
         $sessionController = SessionController::getInstance();
         $sessionController->makeSureLoggedOut('/'); // Why a logged in user want to access this page?
@@ -39,6 +42,13 @@ class RegisterController {
         if(empty($_POST["email"])) {
             $formErrors->add('email', 'Email should not be blank');
         }
+        if(empty($_POST["nick_name"])) {  
+            $formErrors->add('nick_name', 'Nick name should not be blank');
+        }
+        if(empty($_POST["type"])) {      
+            $formErrors->add('type', 'User type should not be blank');
+        }
+
         // Validate Email address
         // We need the absence of previous errors to check this as this may overwritten by the empty email check
         if(!$formErrors->haveError() && !Validation::validateEmailAddress($_POST["email"])) {
@@ -55,6 +65,12 @@ class RegisterController {
             $formErrors->add('password', '');  // Just show the red border around the "password"
             $formErrors->add('confirm_password', 'Password must be in 6-16 characters');
         }
+
+        if(!$formErrors->haveError() && !in_array($_POST["type"], ['restaurant', 'consumer'])) {
+            $formErrors->add('type', 'Invalid user type');
+        }
+
+
         // The two passwords need to be the same
         // We need the absence of previous errors to check this as this may overwritten by the empty password/password length check
         if(!$formErrors->haveError() && $_POST["password"] != $_POST["confirm_password"]) {
@@ -72,6 +88,8 @@ class RegisterController {
                 $user->username=$_POST["username"];
                 $user->password=sha1($_POST["password"]);
                 $user->email=$_POST["email"];
+                $user->nick_name = $_POST["nick_name"];  
+                $user->type = $_POST["type"];  
                 if(User::createNewUser($user)) {
                     // Register succeed
                     $registerPageView = new View('register_succeed', 'Register Succeed');
